@@ -39,7 +39,8 @@ class MyApp extends State<Widget1> {
 
   final Logger logger = Logger(); //логи не работают яхз пофиг)))
 
-  String serverText = ''; // текст, полученный от сервера
+  String serverText = "Категория"; // текст, полученный от сервера
+  String serverDesc = "Здесь будет описание предмета...";
   List<String> serverPhotos = []; // список фотографий, полученных от сервера
 
   Future<void> _pickImage() async {
@@ -235,46 +236,25 @@ class MyApp extends State<Widget1> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(height: 20),
+                          SizedBox(height: 30),
                           Container(
-                            height: 50,
-                            width: 250,
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(143, 124, 112, 1),
-                              border: Border.all(
-                                  color: Color.fromRGBO(0, 0, 0, 0.5)),
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
-                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child:
                           Text(
                             serverText,
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 26.0,
                               color: Colors.white,
                               fontFamily: "Montserrat",
+                              ),),
                             ),
                           ),
-
-                          // child: DropdownButton<String>(         //КАТЕГОРИИ
-                          //   style: TextStyle(
-                          //     fontSize: 30.0,
-                          //     color: Color(0xffffffff),
-                          //     fontFamily: "Montserrat",
-                          //     // fontWeight: FontWeight.w600,
-                          //     letterSpacing: 1.0,
-                          //   ),
-                          //   icon: const Icon(
-                          //     Icons.arrow_drop_down,
-                          //     color: Colors.white70,
-                          //   ),
-                          //   dropdownColor: Color.fromRGBO(143, 124, 112, 1),
-                          //   elevation: 2,
-                          //   underline: SizedBox(),
-                          //   items: items.map((item) => DropdownMenuItem<String>(value: item, child: Text(item))).toList(),
-                          //   value: selectedItem,
-                          //   onChanged: (String? newValue) {setState(() {selectedItem = newValue!;}); },
-                          // ),
-
+                          SizedBox(height: 5),
                           SizedBox(
                             width: 130,
                             height: 60,
@@ -286,33 +266,24 @@ class MyApp extends State<Widget1> {
                                       fit: BoxFit.cover)),
                             ),
                           ),
-                          SizedBox(
-                              width: 350,
-                              height: 300,
-                              child: TextField(
-                                  style: TextStyle(
-                                      fontSize: 20.0,
-                                      color: Colors.white,
-                                      fontFamily: "Montserrat"),
-                                  onChanged: (text) {
-                                    setState(() {
-                                      textFieldValue = text;
-                                    });
-                                  },
-                                  decoration: InputDecoration(
-                                      hintText: "Начните вводить описание...",
-                                      hintStyle: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.white70,
-                                        fontFamily: "Montserrat",
-                                      ),
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 30.0, horizontal: 10.0),
-                                      fillColor: Color.fromRGBO(0, 0, 0, 0.50),
-                                      filled: true,
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30.0))))),
+                          Container(
+                            width: 350,
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(0, 0, 0, 0.50),
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(20.0),
+                              child:
+                              Text(
+                                serverDesc,
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white70,
+                                  fontFamily: "Montserrat",
+                                ),),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -320,6 +291,7 @@ class MyApp extends State<Widget1> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
