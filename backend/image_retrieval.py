@@ -27,4 +27,4 @@ def get_similar_images(file_path : str):
     distances = sorted(distances)[:10]
 
 
-    return [[image_filepaths[path_indexes[i]], 1 - distances[i]] for i in range(10)]
+    return [image_filepaths[path_indexes[i]] for i in range(10)]

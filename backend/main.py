@@ -24,16 +24,12 @@ def upload(request : Request, file_info: UploadFile = File(...)):
 
     file.close()
 
-    paths, relevants = image_retrieval.get_similar_images(cached_image_path)
+    paths = image_retrieval.get_similar_images(cached_image_path)
 
     requests = [str(request.base_url) + f'image?file_path={paths[i]}' for i in range(10)]
 
-    return {
-        'image_requests': requests
-    }
+    return { 'image_requests': requests }
 
 @app.get("/image")
 def image(file_path : str):
-    img_path = ''
-
-    return FileResponse(img_path)
+    return FileResponse(file_path)

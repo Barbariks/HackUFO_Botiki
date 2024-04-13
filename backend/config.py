@@ -16,10 +16,10 @@ nn_classes = [
     "Археология",
 ]
 
-content_types = [
+content_types = {
     "image/jpeg",
     "image/png",
     "image/img"
-],
+}
 
-cache_folder_path = "/image_cache/"
+cache_folder_path = "image_cache/"
