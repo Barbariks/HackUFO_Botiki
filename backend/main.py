@@ -2,22 +2,11 @@ from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.responses import FileResponse
 import cv2
 
-import psycopg2
+from config import nn_classes, content_types, cache_folder_path
 
-import torch
-
-from config import database, nn_classes, content_types, cache_folder_path
-
-# model = torch.jit.load("*model_path*.pt")
-# model.eval()
+import image_retrieval
 
 app = FastAPI()
-
-def net_forward(img_path : str):
-    img = cv2.imread(img_path)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-    return 0
 
 @app.post("/upload")
 def upload(request : Request, file_info: UploadFile = File(...)):
@@ -35,17 +24,16 @@ def upload(request : Request, file_info: UploadFile = File(...)):
 
     file.close()
 
-    category = net_forward(cached_image_path)
+    paths, relevants = image_retrieval.get_similar_images(cached_image_path)
 
-    requests = [str(request.base_url) + f'image?filename={i}' for i in range(10)]
+    requests = [str(request.base_url) + f'image?file_path={paths[i]}' for i in range(10)]
 
     return {
-        'category': nn_classes[category],
         'image_requests': requests
     }
 
 @app.get("/image")
-def image(filename : str):
+def image(file_path : str):
     img_path = ''
 
     return FileResponse(img_path)

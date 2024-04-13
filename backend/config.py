@@ -1,10 +1,3 @@
-database = {
-    "host": "localhost",
-    "user": "maga",
-    "password": "qwerty",
-    "db_name": "mydb"
-}
-
 nn_classes = [
     "Редкие книги",
     "Нумизматика",
