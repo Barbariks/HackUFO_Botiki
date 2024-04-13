@@ -60,7 +60,7 @@ class MyApp extends State<Widget1> {
       final ImagePicker _picker = ImagePicker();
       XFile? image = await _picker.pickImage(source: ImageSource.gallery);
       if (image != null) {
-        var f = await image.readAsBytes();
+        var f= await image.readAsBytes();
         setState(() {
           webImage = f;
           _pickedImage = File('a');
