@@ -1,4 +1,5 @@
 import psycopg2
+
 from config import database
 
 def get_item(id: int):
