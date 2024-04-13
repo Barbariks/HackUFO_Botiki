@@ -305,9 +305,6 @@ class MyApp extends State<Widget1> {
                             width: 160.0,
                             height: 125.0,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromRGBO(0, 0, 0, 0.50),
-                              ),
                               color: Color.fromRGBO(0, 0, 0, 0.50),
                               borderRadius: BorderRadius.circular(16.0),
                             ),
@@ -333,9 +330,6 @@ class MyApp extends State<Widget1> {
                             width: 160.0,
                             height: 125.0,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromRGBO(0, 0, 0, 0.50),
-                              ),
                               color: Color.fromRGBO(0, 0, 0, 0.50),
                               borderRadius: BorderRadius.circular(16.0),
                             ),
