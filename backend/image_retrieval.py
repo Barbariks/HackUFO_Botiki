@@ -3,7 +3,6 @@ from transformers import CLIPModel, CLIPProcessor
 from sklearn.metrics.pairwise import cosine_similarity
 from PIL import Image
 
-
 device = 'cpu'
 
 data = np.load('image_embeddings.npz')
