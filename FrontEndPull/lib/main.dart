@@ -34,6 +34,7 @@ class MyApp extends State<Widget1> {
   List<String> items = [' Скульптура', ' Живопись'];
   String selectedItem = ' Скульптура';
   String textFieldValue = '';
+  String resp = "";
   File? _pickedImage;
   Uint8List webImage = Uint8List(8);
 
@@ -76,13 +77,12 @@ class MyApp extends State<Widget1> {
   }
 
   Future<void> _sendImageToServer(File imageFile) async {
-    var url = Uri.parse('ссылка на наш сервер'); //вот сюда ссылку на наш сервер
+    var url = Uri.parse('http://localhost:8000/upload'); //вот сюда ссылку на наш сервер
     var request = http.MultipartRequest('POST', url);
-    request.files
-        .add(await http.MultipartFile.fromPath('image', imageFile.path));
+    request.files.add(await http.MultipartFile.fromPath('image', imageFile.path));
 
     var response = await request.send();
-
+    resp = response as String;
     if (response.statusCode == 200) {
       log('Изображение успешно загружено');
     } else {
@@ -90,38 +90,10 @@ class MyApp extends State<Widget1> {
     }
   }
 
-  Future<void> _makeJSON() async {
-    Map<String, dynamic> data = {
-      'image': _pickedImage,
-      // 'text': textFieldValue,
-      // 'category': selectedItem,
-    };
-    if (_pickedImage != null /*&& textFieldValue != ''*/) {
-      String jsonData = json.encode(data);
-      final file = File('data.json');
-      await file.writeAsString(jsonData);
-      _sendJSONToServer(file);
-    }
-  }
-
-  Future<void> _sendJSONToServer(File json) async {
-    var url = Uri.parse('ссылка на наш сервер'); //вот сюда ссылку на наш сервер
-    var request = http.MultipartRequest('POST', url);
-    request.files.add(await http.MultipartFile.fromPath('json', json.path));
-
-    var response = await request.send();
-
-    if (response.statusCode == 200) {
-      log('JSON успешно отправлен');
-    } else {
-      log('Не удалось отправить JSON. Ошибка: ${response.reasonPhrase}');
-    }
-  }
-
   void _processServerResponse(String response) {
     Map<String, dynamic> responseData = json.decode(response);
     String text = responseData['text'];
-    List<String> photos = List<String>.from(responseData['photos']);
+    List<String> photos = List<String>.from(responseData['image_requests']);
     setState(() {
       serverText = text;
       serverPhotos = photos;
@@ -209,7 +181,7 @@ class MyApp extends State<Widget1> {
                         ),
                         ElevatedButton.icon(
                           onPressed: () {
-                            _makeJSON();
+                            _processServerResponse(resp);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromRGBO(143, 124, 112, 1),
