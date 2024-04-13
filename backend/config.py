@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 database = {
     "host": "localhost",
     "user": "maga",
@@ -30,3 +31,30 @@ content_types = [
 ],
 
 cache_folder_path = "/image_cache/"
+=======
+nn_classes = [
+    "Редкие книги",
+    "Нумизматика",
+    "Прочие",
+    "ДПИ",
+    "Естественнонауч.коллекция",
+    "Минералогия",
+    "Печатная продукция",
+    "Техника",
+    "Скульптура",
+    "Фото, негативы",
+    "Документы",
+    "Оружие",
+    "Графика",
+    "Живопись",
+    "Археология",
+]
+
+content_types = {
+    "image/jpeg",
+    "image/png",
+    "image/img"
+}
+
+cache_folder_path = "image_cache/"
+>>>>>>> 0aecc2fe6bf3000828f19f62c86817c223bbc68e

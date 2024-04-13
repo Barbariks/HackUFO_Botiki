@@ -1,3 +1,9 @@
 .DS_Store
 README.md
+<<<<<<< HEAD
 backend/__pycache__
+=======
+__pycache__/
+train_dataset/
+image_cache/
+>>>>>>> 0aecc2fe6bf3000828f19f62c86817c223bbc68e
